@@ -209,6 +209,7 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
     --local uuid = _C().Uuid.EntityUuid
     local slotMapKey
     local index
+    local AnimationSets
     if random == true then
         index = Ext.Math.Random(1, #ihateCombos.Options)
         ihateCombos.SelectedIndex = index - 1
@@ -223,17 +224,14 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
                         animationID = Utils.ZEROUUID
                     end
                     if part == 'Body' then
-                        for _,AnimationSet in pairs(BaseBodyAnimationSets) do
-                            SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
-                        end
+                        AnimationSets = BaseBodyAnimationSets
                     elseif part == 'Face' then
-                        for _,AnimationSet in pairs(BaseHeadAnimationSets) do
-                            SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
-                        end
+                        AnimationSets = BaseHeadAnimationSets
                     elseif part == 'Tail' then
-                        for _,AnimationSet in pairs(BaseTailAnimationSets) do
-                            SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
-                        end
+                        AnimationSets = BaseTailAnimationSets
+                    end
+                    for _,AnimationSet in pairs(AnimationSets) do
+                        SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
                     end
                     if not histCheckbox.Checked then
                         table.insert(NamedHistAnimations, {name = animationName, id = animationID})
