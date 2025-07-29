@@ -1,0 +1,48 @@
+{
+    "SchemaVersion": 1,
+    "ModName": "QSAT",
+    "Tabs": [
+            {
+                "TabId": "QSAT-main",
+                "TabName": "QSAT",
+                "Sections": [
+                    {
+                        "SectionId": "general_settings",
+                        "SectionName": "",
+                        "Settings": [
+                            {
+                                "Id": "qsat_toggle_window",
+                                "Name": "! Toggle window",
+                                "Description": "looks boring with no description",
+                                "Type": "keybinding_v2",
+                                "Default": {
+                                    "Keyboard": {
+                                        "Key": "",
+                                        "ModifierKeys": []
+                                    }
+                                },
+                                "Options": {
+                                    "BlockIfLevelNotStarted": true
+                                }
+                            },
+                            {
+                                "Id": "qsat_pause_window",
+                                "Name": "Pause",
+                                "Description": "looks boring with no description",
+                                "Type": "keybinding_v2",
+                                "Default": {
+                                    "Keyboard": {
+                                        "Key": "",
+                                        "ModifierKeys": []
+                                    }
+                                },
+                                "Options": {
+                                    "BlockIfLevelNotStarted": true
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
