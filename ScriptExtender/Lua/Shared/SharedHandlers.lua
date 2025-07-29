@@ -35,6 +35,7 @@ function InitializeMapKeys()
                 end
             end
         end
+        initialized = true
         DPrint('MapKeys initialized')
     end
 end
