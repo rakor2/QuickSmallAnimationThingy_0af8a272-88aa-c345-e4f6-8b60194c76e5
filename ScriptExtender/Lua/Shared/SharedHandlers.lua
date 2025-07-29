@@ -16,7 +16,6 @@ NamedFavAnimations = NamedFavAnimations or {}
 NamedHistAnimations = NamedHistAnimations or {}
 
 
-
 ---Intizialezes MapKeys so they show up in PM pose colletion
 local initialized = false
 function InitializeMapKeys()
@@ -278,28 +277,30 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
 end
 
 
+
+
 ---Saves default animation IDs for each Animation Set in BaseBodyAnimationSets
-function LazyBodySave()
-    local Data = {}
-    if Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json') then
-        return
-    else
-        for _, animationSet in pairs(BaseBodyAnimationSets) do
-            Data[animationSet] = Data[animationSet] or {}
-            local animSet = AnimationSet.Get(animationSet)
-                for _, mapKey in pairs(MapKeys) do
-                Data[animationSet][mapKey] = Data[animationSet][mapKey] or {}
-                if animSet and animSet[1] and animSet[1].AnimationBank.AnimationSubSets[''] and animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey] then
-                    local savedAnimID = animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey].ID
-                    table.insert(Data[animationSet][mapKey], savedAnimID)
-                end
-            end
-        end
-    end
-    DPrint('Default body animation IDs saved to local file')
-    Ext.IO.SaveFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json', Ext.Json.Stringify(Data))
-end
-LazyBodySave()
+-- function LazyBodySave()
+--     local Data = {}
+--     if Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json') then
+--         return
+--     else
+--         for _, animationSet in pairs(BaseBodyAnimationSets) do
+--             Data[animationSet] = Data[animationSet] or {}
+--             local animSet = AnimationSet.Get(animationSet)
+--                 for _, mapKey in pairs(MapKeys) do
+--                 Data[animationSet][mapKey] = Data[animationSet][mapKey] or {}
+--                 if animSet and animSet[1] and animSet[1].AnimationBank.AnimationSubSets[''] and animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey] then
+--                     local savedAnimID = animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey].ID
+--                     table.insert(Data[animationSet][mapKey], savedAnimID)
+--                 end
+--             end
+--         end
+--     end
+--     DPrint('Default body animation IDs saved to local file')
+--     Ext.IO.SaveFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json', Ext.Json.Stringify(Data))
+-- end
+-- LazyBodySave()
 
 -- function LazyFaceSave()
 --     local Data = {}
@@ -325,22 +326,22 @@ LazyBodySave()
 
 
 ---Loads default animation IDs
-function UnSkizzing()
-    local data = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json'))
-    for animationSet, MapKeys in pairs(data) do
-        for mapKey, animID in pairs(MapKeys) do
-            local animSet = AnimationSet.Get(animationSet)
-            animSet:AddLink(mapKey, animID[1], '')
-        end
-    end
-    -- local data2 = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json'))
-    -- for animationSet, MapKeys in pairs(data2) do
-    --     for mapKey, animID in pairs(MapKeys) do
-    --         local animSet = AnimationSet.Get(animationSet)
-    --         animSet:AddLink(mapKey, animID[1], '')
-    --     end
-    -- end
-end
+-- function UnSkizzing()
+--     local data = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json'))
+--     for animationSet, MapKeys in pairs(data) do
+--         for mapKey, animID in pairs(MapKeys) do
+--             local animSet = AnimationSet.Get(animationSet)
+--             animSet:AddLink(mapKey, animID[1], '')
+--         end
+--     end
+--     -- local data2 = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json'))
+--     -- for animationSet, MapKeys in pairs(data2) do
+--     --     for mapKey, animID in pairs(MapKeys) do
+--     --         local animSet = AnimationSet.Get(animationSet)
+--     --         animSet:AddLink(mapKey, animID[1], '')
+--     --     end
+--     -- end
+-- end
 
 
 
