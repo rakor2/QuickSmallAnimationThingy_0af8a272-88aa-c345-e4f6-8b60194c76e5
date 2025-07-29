@@ -21,7 +21,6 @@ function Window:QSATMCM()
     end
     Mods.BG3MCM.IMGUIAPI:InsertModMenuTab(ModuleUUID, "QSAT", CreateQSATMCMTab)
 end
-    
 
 
 function Window:QSATWindow()
@@ -367,7 +366,15 @@ function Window:QSATWindow()
 
     local sepa123 = p:AddSeparatorText('?')
 
+
+    local resetTail = p:AddButton('Reset body')
+    resetTail.OnClick = function ()
+        QSAT:PlayAnimation(_, 'Body', 'Stop', false, true)
+    end
+
+
     local resetHead = p:AddButton('Reset head')
+    resetHead.SameLine = true
     resetHead.OnClick = function ()
         QSAT:PlayAnimation(_, 'Face', 'Stop', false, true)
     end
@@ -378,19 +385,13 @@ function Window:QSATWindow()
         QSAT:PlayAnimation(_, 'Tail', 'Stop', false, true)
     end
 
-    local resetTail = p:AddButton('Reset body')
-    resetTail.SameLine = true
-    resetTail.OnClick = function ()
-        QSAT:PlayAnimation(_, 'Body', 'Stop', false, true)
-    end
 
-    local resetAnims = p:AddButton('Reset to default')
-    resetAnims.OnClick = function ()
-        UnSkizzing()
-    end
+    -- local resetAnims = p:AddButton('Reset to default')
+    -- resetAnims.OnClick = function ()
+    --     UnSkizzing()
+    -- end
 
-    local updateNamedAnimations = p:AddButton('Update animations')
-    updateNamedAnimations.SameLine = true
+    local updateNamedAnimations = p:AddButton('Update animation list')
     updateNamedAnimations.OnClick = function ()
         ForceGenerateAnimationsWithNames()
         Globals.ModdedOptions = nil
