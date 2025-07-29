@@ -33,9 +33,14 @@ Slots = {
     'Reserved 4',
     'Reserved 5',
     'Reserved 6',
+    'Reserved 7',
+    'Reserved 8',
+    'Reserved 9',
+    'Reserved 10',
 }
 
 ---LOCO
+---LOCO QSAT_Anim
 MapKeys = {
     '8b71666d-a69a-4c54-ae41-20ce3fa0e003',
     'a55420a8-13f4-4a95-a94a-45e14322064f',
@@ -43,6 +48,16 @@ MapKeys = {
     '05314265-53cc-4afd-ab31-d596126c8cac',
     '02307f16-aad0-413b-bf23-81825cebc757',
     '77ea0b3c-acbb-4b48-9d7a-58e9bb19e473',
+    '79da7451-ef6d-4474-84a0-71034277cf76',
+    '323e0f9e-1ad3-4761-8e9d-8800f83a36c6',
+    '2a9a92ea-7e4b-4c1b-9dfd-a35699e162d7',
+    'aa340f5d-84ce-4b42-9a1c-527c354479ec',
+    'f000ec63-2304-45cd-a020-b902c02bc1eb',
+    '89145311-43a4-468c-946c-289c0f94dc8e',
+    '5ef8ee5b-84b4-4f57-8bb2-7ae112723601',
+    'e755c366-319d-48b2-bc8f-5ab8f800a56a',
+    '9942c884-fa0d-44d1-8538-a8153158de82',
+    '88838fb7-4548-4471-a88c-f833f7aaedad',
 }
 
 ---IDLE

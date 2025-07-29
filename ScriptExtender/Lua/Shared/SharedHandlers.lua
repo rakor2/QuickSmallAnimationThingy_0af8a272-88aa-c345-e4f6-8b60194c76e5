@@ -17,6 +17,28 @@ NamedHistAnimations = NamedHistAnimations or {}
 
 
 
+---Intizialezes MapKeys so they show up in PM pose colletion
+local initialized = false
+function InitializeMapKeys()
+    if initialized == false then
+        local animationID
+        for _, BaseAnimationSets in pairs({BaseBodyAnimationSets, BaseHeadAnimationSets, BaseTailAnimationSets}) do
+            for _, AnimationSet in pairs(BaseAnimationSets) do
+                for _, slotMapKey in pairs(MapKeys) do
+                    if BaseAnimationSets == BaseBodyAnimationSets then
+                        animationID = '0d802f8f-2034-17c0-983f-18f02788211c'
+                    elseif BaseAnimationSets == BaseHeadAnimationSets then
+                        animationID = '7b7d0561-2ed7-72f2-c8f3-ab08d6acab67'
+                    elseif BaseAnimationSets == BaseTailAnimationSets then
+                        animationID = '352df86f-337d-76f8-875a-c8815ead5fd7' --TIF_F Tail; do I care about M or DGB? Or do M and DGB care about me? PonderingCat
+                    end
+                    SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
+                end
+            end
+        end
+        DPrint('MapKeys initialized')
+    end
+end
 
 ---Creates named options for the combo
 ---@return string[]
