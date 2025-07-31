@@ -148,12 +148,10 @@ BaseBodyAnimationSets = {
     "19b4fec0-20a7-7ef5-ad41-412b5a929e61",
     "47ae4dcb-9702-b7cb-4e95-137dae9be64b",
     "4d1866e7-57a4-2a03-8120-08559dcaddbb",
-    "d74bcb62-2203-a03e-e910-6270c2a23adb",
     "a6d6f7d4-0eb7-d642-9fce-055722a2c8fd",
     "ac7e413d-4082-4db9-390d-90a05997cde2",
     "6b3f7893-9f7c-d22a-1f2c-298523de9c02",
     "c3acac4f-6a56-2340-d5dc-d0bfba31e678",
-    "421b98a5-a884-c3d5-addd-d6d798962479",
     "8c6179b4-abf6-eef9-2b7b-7b0a13d376b1",
     "845ccbf6-71a9-1e00-ed78-d550c192045b",
     "12af6022-21d3-8d60-58c8-4469770909d3",
@@ -460,10 +458,7 @@ BaseBodyAnimationSets = {
     "7512e727-9257-f30c-a981-c9cc7f1260a1",
     "f82066a1-0d47-db34-e15b-6353eaf9f45c",
     "9d1bc4fb-43bf-e733-d136-89bbe4ae0f0e",
-    "c8252e2d-de1d-2c03-e8d4-aba64b6425af",
     "7b368004-c69b-44bb-9108-306333143c1b",
-    "17b85ba0-f4b7-abd3-4ed5-307d71a55836",
-    "3fe6162b-0be8-a760-6f20-b2929659e1cd",
     "d903e013-ddfb-edca-f2b0-89cc7f4412c8",
     "c9833ef6-1047-78d4-fbf8-a41bb04ece03",
     "1afe4415-c027-5be1-f470-2aebe81b12ba",
@@ -513,9 +508,7 @@ BaseBodyAnimationSets = {
     "a8afcfda-5647-d51f-52b9-12b70c38f03c",
     "ae193cd6-5c0e-1863-a40c-887d45eef0c3",
     "769504ed-3743-bad7-8abf-4d043717ea78",
-    "a964e6ae-ab6d-12af-7de6-77b4ef8fffbb",
     "6b5b72df-8cdb-57c3-537b-35f1e71437ee",
-    "88930b1d-4844-0905-060c-6533332f4c09",
     "00afb2f7-c016-8143-4678-cdd432ad33a7",
     "ded75dfd-0844-362f-9e24-f33120864887",
     "5e59debe-5481-480c-c3c8-4e6b84f97c65",
@@ -843,8 +836,6 @@ BaseBodyAnimationSets = {
     "4a29a22d-da1c-b31f-9a17-9628a6238620",
     "eb254a2b-9475-14fe-7de0-25346623a438",
     "0870b175-aa04-6756-e63a-4ffcaf961506",
-    "0b4960b8-9c89-994c-2442-e803e6599493",
-    "bdd283fb-e4fe-5b82-00e1-75033d76c7e4",
     "5c047bbc-4963-d035-daea-d9409b601321",
     "73917514-c4b1-8e39-229f-e878f2799b9f",
     "7c23ae6e-8f35-156c-cab6-4a58c9b0d4d2",
@@ -1189,7 +1180,6 @@ BaseBodyAnimationSets = {
     "12b58d8e-bc98-a2e8-bc46-ed597235fe77",
     "d4891bbc-af38-ce0d-19b7-d1e416cdeeb2",
     "768366d6-eded-6001-f7b0-6860a8558901",
-    "941fa8ff-d19c-85ee-0ca0-b0aa1daf1550",
     "f3f2f828-4e00-7b15-e642-4263230fbeb7",
     "34e469eb-eb33-100f-4c4c-0f56aefb8888",
     "a382b57b-d1cb-5131-943a-76e0257a3430",
@@ -1675,7 +1665,6 @@ BaseBodyAnimationSets = {
     "96f64c6c-eafe-ed79-753c-35f60e83afa9",
     "75051e9c-d098-bed5-1345-900c081184b9",
     "64c2a837-ccac-3428-1ffb-572f2386366e",
-    "4fc6c7fc-108b-cf39-8d98-25d58c21a2d5",
     "c593634c-bbdb-d250-5d3a-f13946dcb7a2",
     "566e6060-b0bf-f124-982c-b3a135134465",
     "8e0a6e43-1d92-723b-d6f0-07e4d8d8eae6",
@@ -1806,7 +1795,18 @@ BaseBodyAnimationSets = {
     "2ec44185-1c6c-d0e9-aaa1-76f8f4bcc63f",
     "997bac42-18d1-d3ce-5d65-1283f2057a4d",
     "ef8cef22-d88c-af42-b757-18f05822e53f",
-    "2483a12d-4610-da9b-91c5-9474975955b3"
+    "2483a12d-4610-da9b-91c5-9474975955b3",
+    -- 'd74bcb62-2203-a03e-e910-6270c2a23adb',
+    -- '421b98a5-a884-c3d5-addd-d6d798962479',
+    -- 'c8252e2d-de1d-2c03-e8d4-aba64b6425af',
+    -- '17b85ba0-f4b7-abd3-4ed5-307d71a55836',
+    -- '3fe6162b-0be8-a760-6f20-b2929659e1cd',
+    -- 'a964e6ae-ab6d-12af-7de6-77b4ef8fffbb',
+    -- '88930b1d-4844-0905-060c-6533332f4c09',
+    -- '0b4960b8-9c89-994c-2442-e803e6599493',
+    -- 'bdd283fb-e4fe-5b82-00e1-75033d76c7e4',
+    -- '941fa8ff-d19c-85ee-0ca0-b0aa1daf1550',
+    -- '4fc6c7fc-108b-cf39-8d98-25d58c21a2d5',
 }
 
 
@@ -1913,7 +1913,7 @@ BaseHeadAnimationSets = {
     "da09fa07-861f-a132-0e1f-2b0d3c824edb",
     "5f7b5166-c7d2-3a46-d887-f770734fb239",
     "e60d2e58-14b5-1522-737e-25a0b5e06f56",
-    "59d43811-76d1-71c2-1138-43e7c3e64c4d"
+    "59d43811-76d1-71c2-1138-43e7c3e64c4d",
 }
 
 
@@ -1932,6 +1932,20 @@ BaseTailAnimationSets = {
     "d513a2d8-bf13-bde3-ac36-811d4d595c5b"
 }
 
+
+BaseWingsAnimationSets = {
+    'd74bcb62-2203-a03e-e910-6270c2a23adb',
+    '421b98a5-a884-c3d5-addd-d6d798962479',
+    'c8252e2d-de1d-2c03-e8d4-aba64b6425af',
+    '17b85ba0-f4b7-abd3-4ed5-307d71a55836',
+    '3fe6162b-0be8-a760-6f20-b2929659e1cd',
+    'a964e6ae-ab6d-12af-7de6-77b4ef8fffbb',
+    '88930b1d-4844-0905-060c-6533332f4c09',
+    '0b4960b8-9c89-994c-2442-e803e6599493',
+    'bdd283fb-e4fe-5b82-00e1-75033d76c7e4',
+    '941fa8ff-d19c-85ee-0ca0-b0aa1daf1550',
+    '4fc6c7fc-108b-cf39-8d98-25d58c21a2d5',
+}
 
 --These ones only for saving animations
 -- BaseBodyAnimationSets2 = {

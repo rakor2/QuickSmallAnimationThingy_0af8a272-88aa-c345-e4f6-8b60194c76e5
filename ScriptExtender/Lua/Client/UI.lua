@@ -132,18 +132,19 @@ function Window:QSATWindow()
 
     local faceCheck
     local tailCheck
-
-    faceCheck = p:AddCheckbox('Face animation')
+    local wingsCheck
+    faceCheck = p:AddCheckbox('Face')
     faceCheck.OnChange = function ()
         if not faceCheck.Checked then
             Globals.part = 'Body'
         else
             Globals.part = 'Face'
             tailCheck.Checked = false
+            wingsCheck.Checked = false
         end
     end
 
-    tailCheck = p:AddCheckbox('Tail animation')
+    tailCheck = p:AddCheckbox('Tail')
     tailCheck.SameLine = true
     tailCheck.OnChange = function ()
         if not tailCheck.Checked then
@@ -151,6 +152,19 @@ function Window:QSATWindow()
         else
             Globals.part = 'Tail'
             faceCheck.Checked = false
+            wingsCheck.Checked = false
+        end
+    end
+
+    wingsCheck = p:AddCheckbox('Wings')
+    wingsCheck.SameLine = true
+    wingsCheck.OnChange = function ()
+        if not wingsCheck.Checked then
+            Globals.part = 'Body'
+        else
+            Globals.part = 'Wings'
+            faceCheck.Checked = false
+            tailCheck.Checked = false
         end
     end
 
@@ -385,13 +399,19 @@ function Window:QSATWindow()
         QSAT:PlayAnimation(_, 'Tail', 'Stop', false, true)
     end
 
+    local resetWings = p:AddButton('Reset wings')
+    resetWings.SameLine = true
+    resetWings.OnClick = function ()
+        QSAT:PlayAnimation(_, 'Wings', 'Stop', false, true)
+    end
+    
 
     -- local resetAnims = p:AddButton('Reset to default')
     -- resetAnims.OnClick = function ()
     --     UnSkizzing()
     -- end
 
-    local updateNamedAnimations = p:AddButton('Update animation list')
+    local updateNamedAnimations = p:AddButton('Update animations')
     updateNamedAnimations.OnClick = function ()
         ForceGenerateAnimationsWithNames()
         Globals.ModdedOptions = nil

@@ -193,7 +193,7 @@ function AddAnimationToFav()
     for animationName, animationID in pairs(NamedAnimations) do
         if animationName:find(ihateCombos.Options[ihateCombos.SelectedIndex + 1]) then
             -- NamedFavAnimations[animationName] = animationID
-            table.insert(NamedFavAnimations, { name = animationName, id = animationID })
+            table.insert(NamedFavAnimations, {name = animationName, id = animationID})
             Ext.IO.SaveFile('QuickSmallAnimationThingy/Favorites.json', Ext.Json.Stringify(NamedFavAnimations))
         end
     end
@@ -214,7 +214,8 @@ function RemoveAnimationFromFav()
 end
 
 
----@param mapKey string | ResourceAnimationSetResourceBank
+---@param animationSet string | ResourceAnimationSetResourceBank
+---@param mapKey Animation
 ---@param animID string | ResourceAnimationResource
 ---@param subSet string | ResourceAnimationSetResourceSubset
 function SkizzingSataning(animationSet, mapKey, animID, subSet)
@@ -224,7 +225,6 @@ end
 
 
 ---@param entity #Not in use for now
----@param animationSet ResourceAnimationSetResourceBank | string
 ---@param action string #play, pause, stop
 ---@param random boolean
 function QSAT:PlayAnimation(entity, part, action, random, reset)
@@ -251,6 +251,8 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
                         AnimationSets = BaseHeadAnimationSets
                     elseif part == 'Tail' then
                         AnimationSets = BaseTailAnimationSets
+                    elseif part == 'Wings' then
+                        AnimationSets = BaseWingsAnimationSets
                     end
                     for _,AnimationSet in pairs(AnimationSets) do
                         SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
