@@ -165,31 +165,59 @@ function getSelectedFillCharacter()
     end
 end
 
+
 ---@return EntityHandle[] visTemplatesTable
 ---@return table visTemplatesOptions
 function getDummyVisualTemplates()
+    local origins
     local visTemplatesTable = {}
     local visTemplatesOptions= {}
+    local xd = {}
+    local match
     NamedOptions = {}
     local visTemplates = Ext.Entity.GetAllEntitiesWithComponent("Visual")
     for i = 1, #visTemplates do
-        if visTemplates[i].Visual and visTemplates[i].Visual.Visual
-            and visTemplates[i].Visual.Visual.VisualResource
-            and visTemplates[i].Visual.Visual.VisualResource.Template == "EMPTY_VISUAL_TEMPLATE"
-            and visTemplates[i]:GetAllComponentNames(false)[2] == "ecl::dummy::AnimationStateComponent"
-        then
-        table.insert(visTemplatesTable, visTemplates[i])
-        local origins = Ext.Entity.GetAllEntitiesWithComponent('Origin')
-            for _, origin in pairs(origins) do
-                local match = MatchCharacterAndPMDummy(origin.Uuid.EntityUuid, visTemplatesTable)
-                NamedOptions[origin.DisplayName.Name:Get()] = match
+        -- if visTemplates[i].Visual and visTemplates[i].Visual.Visual
+        --     and visTemplates[i].Visual.Visual.VisualResource
+        --     and visTemplates[i].Visual.Visual.VisualResource.Template == "EMPTY_VISUAL_TEMPLATE"
+        --     and visTemplates[i]:GetAllComponentNames(false)[2] == "ecl::dummy::AnimationStateComponent"
+        -- then
+        if visTemplates[i].Visual and visTemplates[i].Visual.Visual then
+            local componetns = visTemplates[i]:GetAllComponentNames(false)
+            for q,t in pairs(componetns) do
+                if t:lower():find('dummy') then
+                    if not xd[visTemplates[i]] then
+                        table.insert(visTemplatesTable, visTemplates[i])
+                        xd[visTemplates[i]] = true
+                    end
+                end
             end
         end
     end
+    origins = Ext.Entity.GetAllEntitiesWithComponent('Origin')
+    for _, origin in pairs(origins) do
+        match = MatchCharacterAndPMDummy(origin.Uuid.EntityUuid, visTemplatesTable)
+        NamedOptions[origin.DisplayName.Name:Get()] = match
+    end
     for name, _ in pairs(NamedOptions) do
         table.insert(visTemplatesOptions, name)
+        -- if name == 'Halsin' then
+        --     DPrint('NO SPECIAL CHARACTERS LMAO')
+        -- end
     end
     visTemComob.Options = visTemplatesOptions
+
+
+        -- for k,v in pairs(visTemplatesTable) do
+        --     DPrint(k)
+        --     DDump(v:GetAllComponentNames(false))
+        -- end
+        -- DPrint('visTemplatesTable')
+        -- DDump(visTemplatesTable)
+        -- DPrint('origins')
+        -- DDump(origins)
+        -- DPrint('visTemplatesOptions')
+        -- DDump(visTemplatesOptions)
     return visTemplatesTable, visTemplatesOptions
 end
 
@@ -247,7 +275,6 @@ end
 ---@param entity #Not in use for now
 ---@param action string #play, pause, stop
 ---@param random boolean
-function QSAT:PlayAnimation(entity, part, action, random, reset)
 function QSAT:PlayAnimation(part, action, random, reset)
     --local uuid = _C().Uuid.EntityUuid
     local slotMapKey
@@ -269,7 +296,6 @@ function QSAT:PlayAnimation(part, action, random, reset)
                     end
                     if part == 'Body' then
                         AnimationSets = BaseBodyAnimationSets
-                    elseif part == 'Face' then
                     elseif part == 'Face' then --temp   
                         AnimationSets = BaseHeadAnimationSets
                         slotFaceMapKey = getFaceReservedSlot()
@@ -313,72 +339,11 @@ function getBlueprintID(entity)
 end
 
 
----Saves default animation IDs for each Animation Set in BaseBodyAnimationSets
--- function LazyBodySave()
---     local Data = {}
---     if Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json') then
---         return
---     else
---         for _, animationSet in pairs(BaseBodyAnimationSets) do
---             Data[animationSet] = Data[animationSet] or {}
---             local animSet = AnimationSet.Get(animationSet)
---                 for _, mapKey in pairs(MapKeys) do
---                 Data[animationSet][mapKey] = Data[animationSet][mapKey] or {}
---                 if animSet and animSet[1] and animSet[1].AnimationBank.AnimationSubSets[''] and animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey] then
---                     local savedAnimID = animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey].ID
---                     table.insert(Data[animationSet][mapKey], savedAnimID)
---                 end
---             end
---         end
---     end
---     DPrint('Default body animation IDs saved to local file')
---     Ext.IO.SaveFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json', Ext.Json.Stringify(Data))
--- end
--- LazyBodySave()
-
--- function LazyFaceSave()
---     local Data = {}
---     if Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json') then
---         return
---     else
---         for _, animationSet in pairs(BaseHeadAnimationSets) do
---             Data[animationSet] = Data[animationSet] or {}
---             local animSet = AnimationSet.Get(animationSet)
---                 for _, mapKey in pairs(MapKeys) do
---                 Data[animationSet][mapKey] = Data[animationSet][mapKey] or {}
---                 if animSet and animSet[1] and animSet[1].AnimationBank.AnimationSubSets[''] and animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey] then
---                     local savedAnimID = animSet[1].AnimationBank.AnimationSubSets[''].Animation[mapKey].ID
---                     table.insert(Data[animationSet][mapKey], savedAnimID)
---                 end
---             end
---         end
---     end
---     DPrint('Default head animation IDs saved to local file')
---     Ext.IO.SaveFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json', Ext.Json.Stringify(Data))
--- end
--- LazyFaceSave()
 function setBlueprintID(entity, id)
     entity.Visual.Visual.VisualResource.BlueprintInstanceResourceID = id
 end
 
 
----Loads default animation IDs
--- function UnSkizzing()
---     local data = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultBodyAnimationIDs.json'))
---     for animationSet, MapKeys in pairs(data) do
---         for mapKey, animID in pairs(MapKeys) do
---             local animSet = AnimationSet.Get(animationSet)
---             animSet:AddLink(mapKey, animID[1], '')
---         end
---     end
---     -- local data2 = Ext.Json.Parse(Ext.IO.LoadFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json'))
---     -- for animationSet, MapKeys in pairs(data2) do
---     --     for mapKey, animID in pairs(MapKeys) do
---     --         local animSet = AnimationSet.Get(animationSet)
---     --         animSet:AddLink(mapKey, animID[1], '')
---     --     end
---     -- end
--- end
 Globals.SavedBlueprints = Globals.SavedBlueprints or {}
 function saveAllBlueprintIDs()
     local origins = Ext.Entity.GetAllEntitiesWithComponent('Origin')

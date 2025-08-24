@@ -28,7 +28,7 @@ function Window:QSATWindow()
     QSATWindow.Open = OPENQUESTIONMARK
     QSATWindow.Closeable = true
     -- QSATWindow.AlwaysAutoResize = true
-    QSATWindow:SetSize({643, 600})
+    QSATWindow:SetSize({643, 700})
 
     mainTabBar = QSATWindow:AddTabBar("LL")
 
@@ -46,10 +46,10 @@ function Window:QSATWindow()
 
     MCM.SetKeybindingCallback('qsat_pause_window', function()
         if paused == 0 then 
-            QSAT:PlayAnimation(Globals.entity, 'Pause', false)
+            QSAT:PlayAnimation(Globals.part, 'Pause', false)
             paused = 1
         else
-            QSAT:PlayAnimation(Globals.entity, 'Play', false)
+            QSAT:PlayAnimation(Globals.part, 'Play', false)
             paused = 0
         end
     end)
@@ -67,8 +67,12 @@ function Window:QSATWindow()
     
     --local tempText = p:AddText('da = M, e0 = F')
 
+    
+    selectFaceSlot = p:AddCombo('Expression slot')
+    selectFaceSlot.Options = SlotsFace
+    selectFaceSlot.SelectedIndex = 0
 
-    selectSlot = p:AddCombo('Slot')
+    selectSlot = p:AddCombo('Pose slot')
     selectSlot.Options = Slots
     selectSlot.SelectedIndex = 0
 
@@ -84,7 +88,7 @@ function Window:QSATWindow()
     ihateCombos.Options = Globals.AnimationOptions
     ihateCombos.SelectedIndex = 0
     ihateCombos.OnChange = function ()
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', false)
+        QSAT:PlayAnimation(Globals.part, 'Play', false)
     end
 
 
@@ -168,7 +172,6 @@ function Window:QSATWindow()
         end
     end
 
-
     local ikCheck = p:AddCheckbox('Toggle IK feet')
     ikCheck.OnChange = function ()
         if ikCheck.Checked then
@@ -186,7 +189,7 @@ function Window:QSATWindow()
     local paused = 0
     local outPlay = p:AddButton('Play')
     outPlay.OnClick = function ()
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', false)
+        QSAT:PlayAnimation(Globals.part, 'Play', false)
         paused = 0
     end
 
@@ -198,7 +201,7 @@ function Window:QSATWindow()
         if ihateCombos.SelectedIndex < 0  then
             ihateCombos.SelectedIndex = #ihateCombos.Options - 1
         end
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', false)
+        QSAT:PlayAnimation(Globals.part, 'Play', false)
         paused = 0
     end
 
@@ -210,7 +213,7 @@ function Window:QSATWindow()
         if ihateCombos.SelectedIndex > #ihateCombos.Options - 1 then
             ihateCombos.SelectedIndex = 0
         end
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', false)
+        QSAT:PlayAnimation(Globals.part, 'Play', false)
         paused = 0
     end
 
@@ -219,10 +222,10 @@ function Window:QSATWindow()
     outPause.SameLine = true
     outPause.OnClick = function ()
         if paused == 0 then 
-            QSAT:PlayAnimation(Globals.entity, Globals.part, 'Pause', false)
+            QSAT:PlayAnimation(Globals.part, 'Pause', false)
             paused = 1
         else
-            QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', false)
+            QSAT:PlayAnimation(Globals.part, 'Play', false)
             paused = 0
         end
     end
@@ -230,14 +233,14 @@ function Window:QSATWindow()
     local outStop = p:AddButton('Stop')
     outStop.SameLine = true
     outStop.OnClick = function ()
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Stop', false)
+        QSAT:PlayAnimation(Globals.part, 'Stop', false)
     end
 
 
     local randomAnim = p:AddButton('Random')
     randomAnim.SameLine = true
     randomAnim.OnClick = function ()
-        QSAT:PlayAnimation(Globals.entity, Globals.part, 'Play', true)
+        QSAT:PlayAnimation(Globals.part, 'Play', true)
         paused = 0
         if histCheckbox.Checked then
             ihateCombos.Options = Globals.AnimationOptions
@@ -354,39 +357,42 @@ function Window:QSATWindow()
     visTemComob.HeightLargest = true
     visTemComob.SameLine = false
     visTemComob.OnChange = function ()
-        getSelectedFillCharacter()
-    end
-
-
-    populateOptions = fillGroup:AddButton("Fill options")
-    populateOptions.IDContext = "populateOpti333ons123"
-    populateOptions.Visible = false
-    populateOptions.SameLine = true
-    populateOptions.OnClick = function()
-        visTemplatesTable, _ = getDummyVisualTemplates()
         selectedCharacter = visTemComob.SelectedIndex + 1
+        --getSelectedFillCharacter()
     end
+
+
+    -- populateOptions = fillGroup:AddButton("Fill options")
+    -- populateOptions.IDContext = "populateOpti333ons123"
+    -- populateOptions.Visible = false
+    -- populateOptions.SameLine = true
+    -- populateOptions.OnClick = function()
+    --     visTemplatesTable, _ = getDummyVisualTemplates()
+    --     selectedCharacter = visTemComob.SelectedIndex + 1
+    -- end
 
     
-    local savedPos = {}
-
-    local savePos = p:AddButton('Save')
     Globals.entity = _C()
+    local savedPos = {}
+                        
+    local savePos = p:AddButton('Save')
     savePos.OnClick = function ()
-        if selectedCharacter then
+        if selectedCharacter and Utils.subID['QSAT_PM'] ~= nil then
             savedPos[selectedCharacter] = visTemplatesTable[selectedCharacter].Visual.Visual.WorldTransform.Translate
+        else
+            Ext.Net.PostMessageToServer('QSAT_SavePos', Ext.Json.Stringify(Globals.entity.Uuid.EntityUuid))
         end
-        Ext.Net.PostMessageToServer('QSAT_SavePos', Ext.Json.Stringify(Globals.entity.Uuid.EntityUuid))
     end
 
     local loadPos = p:AddButton('Load')
     Globals.entity = _C()
     loadPos.SameLine = true
     loadPos.OnClick = function ()
-        if selectedCharacter then
+        if selectedCharacter and Utils.subID['QSAT_PM'] ~= nil then
             visTemplatesTable[selectedCharacter].Visual.Visual.WorldTransform.Translate = savedPos[selectedCharacter]
+        else
+            Ext.Net.PostMessageToServer('QSAT_LoadPos', Ext.Json.Stringify(Globals.entity.Uuid.EntityUuid))
         end
-        Ext.Net.PostMessageToServer('QSAT_LoadPos', Ext.Json.Stringify(Globals.entity.Uuid.EntityUuid))
     end
 
     local sepa123 = p:AddSeparatorText('?')
@@ -394,26 +400,35 @@ function Window:QSATWindow()
 
     local resetTail = p:AddButton('Reset body')
     resetTail.OnClick = function ()
-        QSAT:PlayAnimation(_, 'Body', 'Stop', false, true)
+        QSAT:PlayAnimation('Body', 'Stop', false, true)
     end
 
 
     local resetHead = p:AddButton('Reset head')
     resetHead.SameLine = true
     resetHead.OnClick = function ()
-        QSAT:PlayAnimation(_, 'Face', 'Stop', false, true)
+        QSAT:PlayAnimation('Face', 'Stop', false, true)
     end
 
     local resetTail = p:AddButton('Reset tail')
     resetTail.SameLine = true
     resetTail.OnClick = function ()
-        QSAT:PlayAnimation(_, 'Tail', 'Stop', false, true)
+        QSAT:PlayAnimation('Tail', 'Stop', false, true)
     end
 
     local resetWings = p:AddButton('Reset wings')
     resetWings.SameLine = true
     resetWings.OnClick = function ()
-        QSAT:PlayAnimation(_, 'Wings', 'Stop', false, true)
+        QSAT:PlayAnimation('Wings', 'Stop', false, true)
+    end
+    
+    local resetAll = p:AddButton('Reset all')
+    resetAll.SameLine = true
+    resetAll.OnClick = function ()
+        QSAT:PlayAnimation('Body', 'Stop', false, true)
+        QSAT:PlayAnimation('Face', 'Stop', false, true)
+        QSAT:PlayAnimation('Tail', 'Stop', false, true)
+        QSAT:PlayAnimation('Wings', 'Stop', false, true)
     end
     
 
@@ -422,7 +437,7 @@ function Window:QSATWindow()
     --     UnSkizzing()
     -- end
 
-    local updateNamedAnimations = p:AddButton('Update animations')
+    local updateNamedAnimations = p:AddButton('Update available animations list')
     updateNamedAnimations.OnClick = function ()
         ForceGenerateAnimationsWithNames()
         Globals.ModdedOptions = nil
@@ -433,7 +448,7 @@ function Window:QSATWindow()
 
     local tt1 = updateNamedAnimations:Tooltip()
     tt1:AddText([[
-        Updates available animations]])
+        Updates available animations list, that are available to play]])
 
 end
 

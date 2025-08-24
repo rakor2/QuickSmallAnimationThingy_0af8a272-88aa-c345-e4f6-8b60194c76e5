@@ -25,7 +25,22 @@ SlotsFace = {
     'Reserved 8',
     'Reserved 9',
     'Reserved 10',
+}
 ---LOCO QSAT_Anim
+-- MapKeys = {
+--     '7c9e4a3f-1b8d-4e2c-a5f0-9e3d8c7b6a21',
+--     'a2b5c8d7-3e4f-4a5b-9c6d-7e8f9a0b1c2d',
+--     '4d3e2f1a-5b6c-4d7e-8f9a-0b1c2d3e4f5a',
+--     '9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d',
+--     '6f5e4d3c-2b1a-9e8d-7f6c-5a4b3c2d1e0f',
+--     '1e2d3c4b-5a6f-7e8d-9f0a-1b2c3d4e5f6a',
+--     '3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f',
+--     '8f9e0d1c-2b3a-4d5e-6f7a-8b9c0d1e2f3a',
+--     '5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d',
+--     '0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a'
+-- }
+
+--TK LOCO
 MapKeys = {
     '79da7451-ef6d-4474-84a0-71034277cf76',
     '323e0f9e-1ad3-4761-8e9d-8800f83a36c6',
