@@ -169,6 +169,17 @@ function Window:QSATWindow()
     end
 
 
+    local ikCheck = p:AddCheckbox('Toggle IK feet')
+    ikCheck.OnChange = function ()
+        if ikCheck.Checked then
+            saveAllBlueprintIDs()
+            Helpers.Timer:OnTicks(1, function ()
+                setBlueprintIDs()
+            end)
+        else
+            restoreBlueprintIDs()
+        end
+    end
     
     Globals.part = 'Body'
 

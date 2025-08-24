@@ -280,6 +280,10 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
 end
 
 
+function getBlueprintID(entity)
+    local id = entity.Visual.Visual.VisualResource.BlueprintInstanceResourceID
+    return id
+end
 
 
 ---Saves default animation IDs for each Animation Set in BaseBodyAnimationSets
@@ -326,6 +330,9 @@ end
 --     Ext.IO.SaveFile('QuickSmallAnimationThingy/DefaultHeadAnimationIDs.json', Ext.Json.Stringify(Data))
 -- end
 -- LazyFaceSave()
+function setBlueprintID(entity, id)
+    entity.Visual.Visual.VisualResource.BlueprintInstanceResourceID = id
+end
 
 
 ---Loads default animation IDs
@@ -345,7 +352,28 @@ end
 --     --     end
 --     -- end
 -- end
+Globals.SavedBlueprints = Globals.SavedBlueprints or {}
+function saveAllBlueprintIDs()
+    local origins = Ext.Entity.GetAllEntitiesWithComponent('Origin')
+    for _, entity in pairs(origins) do
+        local uuid = entity.Uuid.EntityUuid
+        Globals.SavedBlueprints[uuid] = getBlueprintID(entity)
+    end
+    return Globals.SavedBlueprints
+end
 
 
+function setBlueprintIDs()
+    local origins = Ext.Entity.GetAllEntitiesWithComponent('Origin')
+    for _, entity in pairs(origins) do
+        setBlueprintID(entity, '26a49b90-cf9b-0f27-58df-03e2c67593e0')
+    end
+end
 
 
+function restoreBlueprintIDs()
+    for entityUuid, id in pairs(Globals.SavedBlueprints) do
+        local entity = Ext.Entity.Get(entityUuid)
+        setBlueprintID(entity, id)
+    end
+end
