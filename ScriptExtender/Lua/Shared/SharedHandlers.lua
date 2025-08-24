@@ -40,6 +40,23 @@ function InitializeMapKeys()
     end
 end
 
+local initializedFace = false
+function InitializeFaceMapKeys()
+    if initializedFace == false then
+        local animationID
+        for _, BaseAnimationSets in pairs({BaseHeadAnimationSets}) do
+            for _, AnimationSet in pairs(BaseAnimationSets) do
+                for _, slotMapKey in pairs(MapKeysFace) do
+                    animationID = '7b7d0561-2ed7-72f2-c8f3-ab08d6acab67'
+                    SkizzingSataning(AnimationSet, slotMapKey, animationID, '')
+                end
+            end
+        end
+        initializedFace = true
+        DPrint('MapKeysFace initialized')
+    end
+end
+
 ---Creates named options for the combo
 ---@return string[]
 function createAnimationOptions()
@@ -125,6 +142,9 @@ function getReservedSlot()
     return MapKeys[selectSlot.SelectedIndex + 1]
 end
 
+function getFaceReservedSlot()
+    return MapKeysFace[selectFaceSlot.SelectedIndex + 1]
+end
 
 ---sd;flkjsdahflkj
 -- function getSelectedAnimationSet()
@@ -228,8 +248,10 @@ end
 ---@param action string #play, pause, stop
 ---@param random boolean
 function QSAT:PlayAnimation(entity, part, action, random, reset)
+function QSAT:PlayAnimation(part, action, random, reset)
     --local uuid = _C().Uuid.EntityUuid
     local slotMapKey
+    local slotFaceMapKey
     local index
     local AnimationSets
     if random == true then
@@ -248,7 +270,12 @@ function QSAT:PlayAnimation(entity, part, action, random, reset)
                     if part == 'Body' then
                         AnimationSets = BaseBodyAnimationSets
                     elseif part == 'Face' then
+                    elseif part == 'Face' then --temp   
                         AnimationSets = BaseHeadAnimationSets
+                        slotFaceMapKey = getFaceReservedSlot()
+                        for _,AnimationSet in pairs(AnimationSets) do
+                            SkizzingSataning(AnimationSet, slotFaceMapKey, animationID, '')
+                        end
                     elseif part == 'Tail' then
                         AnimationSets = BaseTailAnimationSets
                     elseif part == 'Wings' then

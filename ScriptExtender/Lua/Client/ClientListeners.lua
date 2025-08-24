@@ -3,6 +3,7 @@
 Ext.RegisterNetListener('QSAT_WhenLevelGameplayStarted', function (channel, payload, user)
     Globals.entity = _C()
     InitializeMapKeys()
+    InitializeFaceMapKeys()
 end)
 
 -- local triggerOnce = 0

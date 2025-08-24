@@ -14,6 +14,17 @@ Slots = {
     'Reserved 10',
 }
 
+SlotsFace = {
+    'Reserved 1',
+    'Reserved 2',
+    'Reserved 3',
+    'Reserved 4',
+    'Reserved 5',
+    'Reserved 6',
+    'Reserved 7',
+    'Reserved 8',
+    'Reserved 9',
+    'Reserved 10',
 ---LOCO QSAT_Anim
 MapKeys = {
     '79da7451-ef6d-4474-84a0-71034277cf76',
@@ -26,6 +37,19 @@ MapKeys = {
     'e755c366-319d-48b2-bc8f-5ab8f800a56a',
     '9942c884-fa0d-44d1-8538-a8153158de82',
     '88838fb7-4548-4471-a88c-f833f7aaedad',
+}
+
+MapKeysFace = {
+    '50a3c74c-fa88-4f1b-8c0d-906b90df3e7a',
+    '970c66ee-398a-4c6c-a60d-0c360e68b883',
+    'e6072a75-4a5a-4788-8091-2a165d2ad182',
+    '67431563-d1e6-46a5-a9ab-cef241d7b70d',
+    '205e475a-688c-4d36-96f4-d39836cb6b8f',
+    '87b889ce-ec0e-40a5-9321-7d1de8a9809c',
+    '0fa6f6bc-6443-48c0-8dfc-d8149608ee96',
+    '40df30d2-083b-4d3f-8314-650c97e31d76',
+    '9884af06-948c-42c1-be79-48e5fb445eed',
+    '4115e81f-fa01-461e-abc8-b133d15b362f',
 }
 
 ---IDLE
