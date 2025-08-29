@@ -29,7 +29,7 @@
                             <attribute id="Name" type="LSString" value="BG3AF"/>
                             <attribute id="PublishHandle" type="uint64" value="0"/>
                             <attribute id="UUID" type="guid" value="e641c689-4da2-42d0-a286-aeb962618556"/>
-                            <attribute id="Version64" type="int64" value="281474976710656"/>
+                            <attribute id="Version64" type="int64" value="140737488355328"/>
                         </node>
                     </children>
                 </node>
@@ -38,7 +38,7 @@
                     <attribute id="CharacterCreationLevelName" type="FixedString" value=""/>
                     <attribute id="Description" type="LSString" value="Play any availabe game and modded animations. Now.
 No pose mods patches bs. Today."/>
-                    <attribute id="FileSize" type="uint64" value="1612975"/>
+                    <attribute id="FileSize" type="uint64" value="1776332"/>
                     <attribute id="Folder" type="LSString" value="QuickSmallAnimationThingy_0af8a272-88aa-c345-e4f6-8b60194c76e5"/>
                     <attribute id="LobbyLevelName" type="FixedString" value=""/>
                     <attribute id="MD5" type="LSString" value="a602793cf60e8fc4ade004ae6c244d24"/>
@@ -49,7 +49,7 @@ No pose mods patches bs. Today."/>
                     <attribute id="PublishHandle" type="uint64" value="0"/>
                     <attribute id="StartupLevelName" type="FixedString" value=""/>
                     <attribute id="UUID" type="FixedString" value="0af8a272-88aa-c345-e4f6-8b60194c76e5"/>
-                    <attribute id="Version64" type="int64" value="36169538802286592"/>
+                    <attribute id="Version64" type="int64" value="36169540949770242"/>
                     <children>
                         <node id="PublishVersion">
                             <attribute id="Version64" type="int64" value="144255927718543409"/>
