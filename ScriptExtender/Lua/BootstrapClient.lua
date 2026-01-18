@@ -14,6 +14,8 @@ Ext.Require("_Libs/_InitLibs.lua")
 --     end
 -- end
 
+
+
 ---@param animation string | ResourceAnimationResource
 ---@return string
 function getAnimationName(animation)
@@ -28,6 +30,8 @@ function getAnimationName(animation)
     return animationName
 end
 
+
+
 function ForceGenerateAnimationsWithNames()
     NamedAnimations = {}
     AllAnimations = Ext.Resource.GetAll('Animation')
@@ -40,6 +44,8 @@ function ForceGenerateAnimationsWithNames()
     DPrint('All animations are saved to the local file')
     return NamedAnimations
 end
+
+
 
 ---Gets all animations and assigns their name to them
 ---@return table<string, string>
@@ -58,6 +64,7 @@ end
 getAllAnimationsWithNames()
 
 
+
 Ext.Require("Shared/_init.lua")
 
 
@@ -69,6 +76,7 @@ else
     NamedFavAnimations = {}
     DPrint('No favorite animations')
 end
+
 
 
 Ext.Require("Client/_init.lua")

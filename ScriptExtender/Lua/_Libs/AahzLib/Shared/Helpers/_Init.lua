@@ -6,4 +6,5 @@ RequireFiles(LibPathRoots.AahzLib.."Shared/Helpers/", {
     "Color",
     "SpellBook",
     "ECSPrinter",
+    "Math",
 })
